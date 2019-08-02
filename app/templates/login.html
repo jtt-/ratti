@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+
+    <head>
+
+        <meta charset="utf-8" />
+
+
+        <title>Ratti - Föli 2019</title>
+        <!-- Google fontti-->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap" rel="stylesheet">
+
+
+        <!-- bootstrap css -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <link href="static/login.css" rel="stylesheet">
+        <link href="static/foli.css" rel="stylesheet">
+    </head>
+
+    <body class="text-center">
+        <div class="container">
+
+        <form action= "/login" method="POST" class="form-signin">
+            <img src="https://www.foli.fi/sites/default/files/F%C3%B6li-logo%2C%20ilman%20turun%20seudun%20joukkoliikennett%C3%A4.png" width=50% alt="">
+            <h3 class="otsikko3">KIRJAUDU SISÄÄN</h3>
+            {{ form.hidden_tag() }}
+            {{ form.email(class_="form-control", placeholder="Sähköpostiosoite") }}
+            {{ form.password(class_="form-control", placeholder="Salasana") }}
+            <input type="submit" value="Kirjaudu sisään">
+
+        </form>
+    </div>
+
+    </body>
+
+</html>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+        <h3 class="otsikko3">Tapahtumat linjoittain</h3>
+    <div class="row">
+        <div class="col-md-6">
+                <form method="POST">
+                        {{ form.hidden_tag() }}
+                        {{ form.linja.label }}{{ form.linja() }}
+                        {{ form.alkupvm.label }} {{ form.alkupvm() }}
+                        {{ form.loppupvm.label }} {{ form.loppupvm() }}
+                        {{ form.submit() }}
+
+                    </form>
+
+                    <div class="chart" id="bargraph">
+                        <script>
+                            var graphs = {{graafi | safe}};
+                            Plotly.plot('bargraph',graphs, {});
+                        </script>
+                    </div>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

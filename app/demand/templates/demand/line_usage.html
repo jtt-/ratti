@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Linjan käyttöaste</h1>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.linja.label }} {{ form.linja() }}
+        {{ form.submit() }}
+
+    </form>
+
+    <div>
+
+        <h2>Nousuja linjalla: {{ usage }}</h2>
+    </div>
+
+{% endblock %}

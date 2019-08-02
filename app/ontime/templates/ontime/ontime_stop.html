@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form method="POST">
+
+        {{ form.hidden_tag() }}
+        {{ form.pysakki.label }} {{ form.pysakki() }}
+        {{ form.submit() }}
+
+    </form>
+
+
+    <div class="chart" id="bargraph">
+        <script>
+            var graphs = {{graph | safe}};
+            Plotly.plot('bargraph',graphs,{});
+        </script>
+    </div>
+
+
+
+{% endblock %}
