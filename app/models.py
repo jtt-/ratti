@@ -9,6 +9,7 @@ class User(db.Document, UserMixin):
     meta = {'collection':'user'}
     email = db.StringField(max_length=64)
     password = db.StringField()
+    username = db.StringField()
 
 
 @login_manager.user_loader

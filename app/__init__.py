@@ -10,11 +10,7 @@ from flask_mongoengine import MongoEngine
 app = Flask(__name__)
 
 # TIETOKANTOJEN KIRJAUTUSTIEDOT PICKLE-TIEDOSTOSSA
-# {'username':<käyttäjätunnus>, 'password':<salasana>}
-#login_details = {'username':<username>, 'password':<password>} 
-#pickle_out = open("db_auth.pickle","wb")
-#pickle.dump(login_details, pickle_out)
-#pickle_out.close()
+# {'secretkey':<secretkey>, 'db':<dbname>, 'host':<serveraddress>, 'port':<port>, username':<käyttäjätunnus>, 'password':<salasana>}
 
 pickle_in = open("db_auth.pickle","rb")
 db_auth = pickle.load(pickle_in)
@@ -26,11 +22,11 @@ db_auth = pickle.load(pickle_in)
 # # MONGOENGINEN MÄÄRITTELY
 # # MONGOENGINEÄ KÄYTETÄÄN VAIN USER AUTHENTICATIONIIN
 ##################################################################################################################################
-app.config['SECRET_KEY'] = 'mysecretkey'
+app.config['SECRET_KEY'] = db_auth['secretkey']
 app.config['MONGODB_SETTINGS'] = {
-    'db':'testi',
-    'host':'13.95.157.194',
-    'port':27017,
+    'db':db_auth['db'],
+    'host':db_auth['host'],
+    'port':db_auth['port'],
     'username':db_auth['username'],
     'password':db_auth['password']
 }
@@ -52,9 +48,9 @@ login_manager.login_view = "login" # Linkitetään kirjautumisnäkymä 'login'
 # # PYMONGOA KÄYTETÄÄN MUUHUIN KUIN KÄYTTÄJÄTIETOIHIN
 ##################################################################################################################################
 
-client = pymongo.MongoClient('13.95.157.194', 27017) # defaults to port 27017
-client.admin.authenticate(db_auth['username'], db_auth['password'], mechanism = 'SCRAM-SHA-1', source = 'testi')
-db_mongo = client['testi']
+client = pymongo.MongoClient(db_auth['host'], db_auth['port']) # defaults to port 27017
+client.admin.authenticate(db_auth['username'], db_auth['password'], mechanism = 'SCRAM-SHA-1', source = db_auth['db'])
+db_mongo = client[db_auth['db']]
 
 #######################################################################################################################################
 #######################################################################################################################################
