@@ -9,7 +9,6 @@ from flask_mongoengine import MongoEngine
 
 app = Flask(__name__)
 
-# Poistetaan
 # TIETOKANTOJEN KIRJAUTUSTIEDOT PICKLE-TIEDOSTOSSA
 # {'username':<käyttäjätunnus>, 'password':<salasana>}
 #login_details = {'username':<username>, 'password':<password>} 

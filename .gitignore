@@ -1,4 +1,5 @@
-/ratti
+rattienv
+rattienv/*
 db_auth.pickle
 *.pyc
 *.pyo
